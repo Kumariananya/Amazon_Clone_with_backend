@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add to Cart Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #product {
+            border: 1px solid #ccc;
+            padding: 10px;
+            max-width: 300px;
+            margin: auto;
+            text-align: center;
+        }
+
+        #cart {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #cartContents {
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div id="product">
+    <h2>Product Name</h2>
+    <p>Price: $19.99</p>
+    <button onclick="addToCart()">Add to Cart</button>
+</div>
+
+<div id="cart">
+    <h2>Shopping Cart</h2>
+    <ul id="cartContents"></ul>
+</div>
+
+<script>
+    // Product details
+    const productName = "Product Name";
+    const productPrice = 19.99;
+
+    // Cart items array
+    let cartItems = [];
+
+    // Function to add the product to the cart
+    function addToCart() {
+        // Create a new item object
+        const newItem = {
+            name: productName,
+            price: productPrice
+        };
+
+        // Add the item to the cart
+        cartItems.push(newItem);
+
+        // Update the cart display
+        updateCartDisplay();
+    }
+
+    // Function to update the cart display
+    function updateCartDisplay() {
+        const cartContentsElement = document.getElementById("cartContents");
+
+        // Clear the current contents
+        cartContentsElement.innerHTML = "";
+
+        // Loop through each item in the cart and display it
+        cartItems.forEach(item => {
+            const li = document.createElement("li");
+            li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+            cartContentsElement.appendChild(li);
+        });
+    }
+</script>
+
+</body>
+</html>
